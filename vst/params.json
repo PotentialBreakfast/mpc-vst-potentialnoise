@@ -1,0 +1,104 @@
+{
+ "name": "PotentialNoise",
+ "params": [
+  {
+   "key": "on",
+   "name": "Noise",
+   "options": [
+    "OFF",
+    "ON"
+   ],
+   "default": "OFF"
+  },
+  {
+   "key": "level",
+   "name": "Level (RMS)",
+   "options": [
+    "-24 dB",
+    "-20 dB",
+    "-18 dB",
+    "-16 dB",
+    "-14 dB",
+    "-12 dB"
+   ],
+   "default": "-14 dB"
+  },
+  {
+   "key": "width",
+   "name": "Channels",
+   "options": [
+    "MONO",
+    "STEREO"
+   ],
+   "default": "MONO"
+  },
+  {
+   "key": "range",
+   "name": "Range",
+   "options": [
+    "FULL",
+    "LIMITED"
+   ],
+   "default": "FULL"
+  },
+  {
+   "key": "reading",
+   "name": "Reading",
+   "type": "readout",
+   "display": "string",
+   "live": true
+  },
+  {
+   "key": "tip",
+   "name": "Tip",
+   "type": "readout",
+   "display": "string",
+   "live": true
+  },
+  {
+   "key": "clear_peak",
+   "name": "Clear peak",
+   "type": "trigger",
+   "momentary": true
+  },
+  {
+   "key": "meter",
+   "name": "Meter",
+   "options": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30"
+   ],
+   "default": "0",
+   "live": true
+  }
+ ]
+}

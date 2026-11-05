@@ -1,0 +1,27 @@
+{
+ "name": "PotentialNoise",
+ "vendor": "PotentialBreaks",
+ "uid": "PbNz",
+ "version": 2000,
+ "so": "potentialnoise.so",
+ "params": "params.json",
+ "layout": "layout.conf",
+ "defines": {
+  "HAS_DISPLAY_REV": 1,
+  "PARAM_TEXT_MAX": 96
+ },
+ "build": {
+  "root": "..",
+  "sources": [
+   "src/noise.c"
+  ],
+  "cflags": [
+   "-ffast-math"
+  ],
+  "libs": [
+   "-lm"
+  ]
+ },
+ "nrpn": false,
+ "art": "html"
+}
