@@ -3,12 +3,13 @@
  "params": [
   {
    "key": "on",
-   "name": "Noise",
+   "name": "(unused)",
    "options": [
     "OFF",
     "ON"
    ],
-   "default": "OFF"
+   "default": "OFF",
+   "legacy": true
   },
   {
    "key": "level",
@@ -99,6 +100,15 @@
    ],
    "default": "0",
    "live": true
+  },
+  {
+   "key": "noise_on",
+   "name": "Noise",
+   "options": [
+    "OFF",
+    "ON"
+   ],
+   "default": "OFF"
   }
  ]
 }

@@ -110,7 +110,10 @@ static void midi(void *p, const uint8_t *m, int n) { (void)p; (void)m; (void)n; 
 
 static void set_param(void *p, const char *k, const char *v) {
     noise_t *e = p; int x = atoi(v);
-    if (!strcmp(k, "on")) e->on = x ? 1 : 0;
+    /* "on" (parameter 0) is an unused slot since 2.0.2: MPC's host flicks parameter 0 on STOP and on Overdub while playing,
+     * which briefly switched the noise on. ON/OFF is "noise_on" now; saved projects still restore it from the state. */
+    if (!strcmp(k, "on")) return;
+    if (!strcmp(k, "noise_on")) e->on = x ? 1 : 0;
     else if (!strcmp(k, "level")) e->level = x < 0 ? 0 : x > 5 ? 5 : x;
     else if (!strcmp(k, "width")) e->width = x ? 1 : 0;
     else if (!strcmp(k, "range")) { int r = x ? 1 : 0; if (r != e->range) { e->range = r; reset_gens(e); } }
@@ -127,7 +130,8 @@ static void set_param(void *p, const char *k, const char *v) {
 
 static int get_param(void *p, const char *k, char *b, int n) {
     noise_t *e = p;
-    if (!strcmp(k, "on")) return snprintf(b, n, "%d", e->on);
+    if (!strcmp(k, "on")) return snprintf(b, n, "0");
+    if (!strcmp(k, "noise_on")) return snprintf(b, n, "%d", e->on);
     if (!strcmp(k, "level")) return snprintf(b, n, "%d", e->level);
     if (!strcmp(k, "width")) return snprintf(b, n, "%d", e->width);
     if (!strcmp(k, "range")) return snprintf(b, n, "%d", e->range);

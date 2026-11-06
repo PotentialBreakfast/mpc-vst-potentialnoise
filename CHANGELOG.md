@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.2 (2026-11)
+- Fixed: pressing **STOP** or **Overdub** while the MPC was playing could switch the noise on for a moment. The MPC's host briefly changes a plugin's first parameter when it re-prepares audio, and that was ON/OFF. That first slot now does nothing; ON/OFF is a new parameter at the end (same switch, same Q-Link). Saved projects open as before.
+
 ## 2.0.1 (2026-11)
 - The plugin's name on its page now reads **PotentialNoise** (was all capitals), matching its name in the MPC's plugin list. Nothing else changed.
 
