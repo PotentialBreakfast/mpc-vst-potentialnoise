@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "engine.h"
+#include "../shared/looks/potential_theme.h"   /* the LOOK switch (parameter "theme") */
 
 #define SR 44100.0
 static const float LEVELS[6] = {-24, -20, -18, -16, -14, -12};
@@ -71,6 +72,7 @@ typedef struct {
     float win_peak, peak, rms_db;
     int meter, has_rms;
     unsigned rev;
+    pt_theme_t theme;   /* which look MPC loads next time: not part of the saved state */
 } noise_t;
 
 /* Soft knee above -2 dBFS: the rare noise peaks round off below 0 dBFS instead of clipping (RMS changes < 0.01 dB). */
@@ -97,9 +99,9 @@ static void retarget(noise_t *e) {
 }
 
 static void *create(const char *dir) {
-    (void)dir;
     noise_t *e = calloc(1, sizeof *e);
     if (!e) return NULL;
+    pt_theme_init(&e->theme, dir);
     e->level = 4; e->norm[0] = calibrate(0); e->norm[1] = calibrate(1);
     e->rms_db = -120; e->peak = 0;
     reset_gens(e); retarget(e);
@@ -110,6 +112,7 @@ static void midi(void *p, const uint8_t *m, int n) { (void)p; (void)m; (void)n; 
 
 static void set_param(void *p, const char *k, const char *v) {
     noise_t *e = p; int x = atoi(v);
+    if (pt_theme_set(&e->theme, k, v)) return;
     /* "on" (parameter 0) is an unused slot since 2.0.2: MPC's host flicks parameter 0 on STOP and on Overdub while playing,
      * which briefly switched the noise on. ON/OFF is "noise_on" now; saved projects still restore it from the state. */
     if (!strcmp(k, "on")) return;
@@ -130,6 +133,7 @@ static void set_param(void *p, const char *k, const char *v) {
 
 static int get_param(void *p, const char *k, char *b, int n) {
     noise_t *e = p;
+    { int pt_n = pt_theme_get(&e->theme, k, b, n); if (pt_n) return pt_n; }
     if (!strcmp(k, "on")) return snprintf(b, n, "0");
     if (!strcmp(k, "noise_on")) return snprintf(b, n, "%d", e->on);
     if (!strcmp(k, "level")) return snprintf(b, n, "%d", e->level);

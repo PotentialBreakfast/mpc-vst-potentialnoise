@@ -1,0 +1,2 @@
+/* PotentialNoise: its keys are big one-tap targets, so their names are big too */
+.seg-bg[height="76"] ~ .seg-tx, .seg-bg[height="64"] ~ .seg-tx, .seg-bg[height="56"] ~ .seg-tx { font-size: 23px; letter-spacing: 0.04em; }

@@ -109,6 +109,16 @@
     "ON"
    ],
    "default": "OFF"
+  },
+  {
+   "key": "theme",
+   "name": "Look",
+   "options": [
+    "Print Plate",
+    "Night Rack",
+    "Colour Block"
+   ],
+   "default": 0
   }
  ]
 }

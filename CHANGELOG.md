@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.0 (2026-11)
+- **Three looks.** A new default look, **Print Plate** (a warm printed panel), plus **Night Rack** (dark rack unit) and **Colour Block** (flat, big type), each in PotentialNoise's own colour. Pick one with the big LOOK keys on the SETTINGS page; it shows the next time the plugin loads (take it off and add it again, or load your project again), and it is remembered on your MPC for every project.
+- Sound, controls and saved projects are unchanged. One parameter was added at the end of the list (LOOK); it is never saved in a project.
+- **Akai's plugin folder format** for MPC OS 3.10.1 and later: a second download (`-akai-vst2.zip`) with 32-bit and 64-bit builds, so it now also runs on Gen2 MPCs. Copy the folder into `VST2 Plugins` and turn on External Plugin Support: no hacking needed.
+
 ## 2.0.2 (2026-11)
 - Fixed: pressing **STOP** or **Overdub** while the MPC was playing could switch the noise on for a moment. The MPC's host briefly changes a plugin's first parameter when it re-prepares audio, and that was ON/OFF. That first slot now does nothing; ON/OFF is a new parameter at the end (same switch, same Q-Link). Saved projects open as before.
 
