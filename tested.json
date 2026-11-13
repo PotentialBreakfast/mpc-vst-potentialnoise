@@ -22,5 +22,11 @@
     "device": "MPC One",
     "firmware": "MPC OS 3.10.1 (Akai plugin folder)",
     "date": "2026-11-12"
+  },
+  {
+    "version": "2.1.1",
+    "device": "MPC One",
+    "firmware": "MPC OS 3.10.1",
+    "date": "2026-11-13"
   }
 ]
