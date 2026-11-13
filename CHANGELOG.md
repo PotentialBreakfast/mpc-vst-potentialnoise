@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.0 (2026-11)
+- **SIGNAL**: four things to play, one tap each. **PINK NOISE** (as before), **TEST TONE** (a steady sine at 1 kHz, 100, 60 or 40 Hz, at the LEVEL you pick: 1 kHz for gain staging, the low ones to hear how far down your speakers go), **OCTAVE BAND** (pink noise in one octave only, 31 Hz to 16 kHz, to balance the tracks in that range) and **SPEAKER CHECK** (left, right, both in phase, both out of phase, 2 seconds each, with the tip line saying which: a quick check that your speakers are the right way round and wired in phase).
+- Switching signal, tone, band, channels or range while it plays fades out and back in, so there are no clicks.
+- The GUIDE page switches to pink noise when it starts.
+- The settings under SIGNAL change with it. Three parameters were added at the end of the list (Signal, Tone, Octave Band); saved projects open as before.
+
 ## 2.2.0 (2026-11)
 - **GUIDE page**: the pink-noise method one tap per track. Pull your faders down and tap **NEXT**: the noise comes on and the guide names each part of your beat in turn (kick, snare / clap, bass, hi-hats, percussion, main sample / chords, melody / lead, vocals, pads / texture, FX), with what to listen for. Parts you don't have are one tap to skip, **BACK** goes back one, and the last tap switches the noise off. **DRUMS FIRST** or **SAMPLE FIRST** sets the order, and your project remembers it.
 - Seven parameters were added at the end of the list for the page; saved projects open as before.

@@ -168,6 +168,45 @@
    "type": "readout",
    "display": "string",
    "live": true
+  },
+  {
+   "key": "signal",
+   "name": "Signal",
+   "options": [
+    "PINK NOISE",
+    "TEST TONE",
+    "OCTAVE BAND",
+    "SPEAKER CHECK"
+   ],
+   "default": "PINK NOISE"
+  },
+  {
+   "key": "tone",
+   "name": "Tone",
+   "options": [
+    "1 kHz",
+    "100 Hz",
+    "60 Hz",
+    "40 Hz"
+   ],
+   "default": "1 kHz"
+  },
+  {
+   "key": "band",
+   "name": "Octave Band",
+   "options": [
+    "31 Hz",
+    "63 Hz",
+    "125 Hz",
+    "250 Hz",
+    "500 Hz",
+    "1 kHz",
+    "2 kHz",
+    "4 kHz",
+    "8 kHz",
+    "16 kHz"
+   ],
+   "default": "31 Hz"
   }
  ]
 }

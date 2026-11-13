@@ -4,7 +4,7 @@
 
 ![PotentialNoise's page on the MPC](docs/images/potentialnoise.png)
 
-*Instrument plugin · MPC OS 3.x · Gen1 and Gen2 · v2.2.0*
+*Instrument plugin · MPC OS 3.x · Gen1 and Gen2 · v2.3.0*
 
 Free and open source (MIT), made by **PotentialBreaks**. It runs inside the MPC like its own instruments, with its own touchscreen page, Q-Link control and project recall, and no computer needed while you play.
 
@@ -14,6 +14,11 @@ Free and open source (MIT), made by **PotentialBreaks**. It runs inside the MPC 
 
 - **NOISE ON / OFF.** It starts off, so nothing blasts when you add it. Switching on, off or changing level fades over about 20 ms, so there are no clicks.
 - **LEVEL:** one tap for **-24, -20, -18, -16, -14 or -12 dB RMS**. The level is measured, not guessed: -14 dB means -14 dBFS RMS.
+- **SIGNAL:** what it plays, one tap:
+  - **PINK NOISE** for the mixing method (below).
+  - **TEST TONE**: a steady sine at **1 kHz**, **100 Hz**, **60 Hz** or **40 Hz**, at the LEVEL you pick (RMS). 1 kHz at -18 dB is a common reference for gain staging: set a track or plugin input to read the same. The low tones show how far down your speakers or headphones really go.
+  - **OCTAVE BAND**: pink noise in one octave only, **31 Hz** to **16 kHz**, at the LEVEL you pick. Balance just the tracks that live in that range against it, for example kick against bass at 63 or 125 Hz.
+  - **SPEAKER CHECK**: noise from the **left** speaker, then the **right**, then **both in phase** (one sound in the middle), then **both out of phase** (wide and hollow), 2 seconds each, round and round. The tip line says which is playing. If the out-of-phase part sounds centred, or the in-phase part sounds hollow, one speaker is wired backwards.
 - **CHANNELS:** **MONO** (the same noise in both speakers) or **STEREO** (two unrelated noise signals).
 - **RANGE:** **FULL** (20 Hz and up) or **LIMITED** (40 Hz to 16 kHz, like the band-limited pink noise files many engineers use).
 - **Reading and meter:** the live **RMS** and **PEAK** of what it's sending, and a 30-segment meter (1 dB per segment, -30 to -1 dB). **CLEAR PEAK** resets the peak.
