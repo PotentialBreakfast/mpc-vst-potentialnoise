@@ -8,3 +8,10 @@ clear_peak
 meter
 noise_on
 theme
+guide_next
+guide_back
+guide_order
+guide_step
+guide_title
+guide_text1
+guide_text2

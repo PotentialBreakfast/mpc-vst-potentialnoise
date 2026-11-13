@@ -4,7 +4,7 @@
 
 ![PotentialNoise's page on the MPC](docs/images/potentialnoise.png)
 
-*Instrument plugin · MPC OS 3.x · Gen1 and Gen2 · v2.1.2*
+*Instrument plugin · MPC OS 3.x · Gen1 and Gen2 · v2.2.0*
 
 Free and open source (MIT), made by **PotentialBreaks**. It runs inside the MPC like its own instruments, with its own touchscreen page, Q-Link control and project recall, and no computer needed while you play.
 
@@ -18,8 +18,11 @@ Free and open source (MIT), made by **PotentialBreaks**. It runs inside the MPC 
 - **RANGE:** **FULL** (20 Hz and up) or **LIMITED** (40 Hz to 16 kHz, like the band-limited pink noise files many engineers use).
 - **Reading and meter:** the live **RMS** and **PEAK** of what it's sending, and a 30-segment meter (1 dB per segment, -30 to -1 dB). **CLEAR PEAK** resets the peak.
 - **HOW TO USE** reminds you of the method right on the page.
+- **GUIDE page:** the whole method, one tap per track. **NEXT** switches the noise on and then names each part of your beat in turn (kick, snare, bass, hats, percussion, main sample, melody, vocals, pads, FX), with what to listen for; parts you don't have are one tap to skip. The last tap switches the noise off. **DRUMS FIRST** or **SAMPLE FIRST** sets the order.
 
 ## The pink-noise method
+
+The **GUIDE** page walks you through this one tap at a time. By hand:
 
 1. Add PotentialNoise to a track and pick a level (-14 dB is a good start).
 2. Tap **ON**.

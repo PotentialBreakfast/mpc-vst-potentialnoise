@@ -119,6 +119,55 @@
     "Colour Block"
    ],
    "default": 0
+  },
+  {
+   "key": "guide_next",
+   "name": "Guide Next",
+   "type": "trigger",
+   "momentary": true
+  },
+  {
+   "key": "guide_back",
+   "name": "Guide Back",
+   "type": "trigger",
+   "momentary": true
+  },
+  {
+   "key": "guide_order",
+   "name": "Guide Order",
+   "options": [
+    "DRUMS FIRST",
+    "SAMPLE FIRST"
+   ],
+   "default": "DRUMS FIRST"
+  },
+  {
+   "key": "guide_step",
+   "name": "Guide Step",
+   "type": "readout",
+   "display": "string",
+   "live": true
+  },
+  {
+   "key": "guide_title",
+   "name": "Guide Title",
+   "type": "readout",
+   "display": "string",
+   "live": true
+  },
+  {
+   "key": "guide_text1",
+   "name": "Guide Text 1",
+   "type": "readout",
+   "display": "string",
+   "live": true
+  },
+  {
+   "key": "guide_text2",
+   "name": "Guide Text 2",
+   "type": "readout",
+   "display": "string",
+   "live": true
   }
  ]
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.0 (2026-11)
+- **GUIDE page**: the pink-noise method one tap per track. Pull your faders down and tap **NEXT**: the noise comes on and the guide names each part of your beat in turn (kick, snare / clap, bass, hi-hats, percussion, main sample / chords, melody / lead, vocals, pads / texture, FX), with what to listen for. Parts you don't have are one tap to skip, **BACK** goes back one, and the last tap switches the noise off. **DRUMS FIRST** or **SAMPLE FIRST** sets the order, and your project remembers it.
+- Seven parameters were added at the end of the list for the page; saved projects open as before.
+
 ## 2.1.2 (2026-11)
 - **CPU figure recorded.** Measured on an MPC One with the Open MPC bench: **PASS**, 1.6% of an audio block at the 99th percentile and 1.9% at worst, so it runs comfortably alongside a full project. It shows on the catalog card and in INSTALL.md.
 - Nothing else changed: same sound, controls and saved projects as 2.1.1.

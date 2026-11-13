@@ -6,7 +6,10 @@
  *   FULL    : 20 Hz high-pass (removes the subsonic part of the filter's tail)
  *   LIMITED : 40 Hz high-pass and 16 kHz low-pass, like the band-limited pink noise files many engineers use
  * MONO sends the same noise to both channels; STEREO uses two uncorrelated generators.
- * Level and on/off changes ramp over ~20 ms, so there are no clicks. MIT licence. */
+ * Level and on/off changes ramp over ~20 ms, so there are no clicks.
+ * GUIDE page (2.2.0): the method one tap per track. NEXT steps through the parts of a beat (drums first, or the main
+ * sample first), saying what to solo and what to listen for; the first tap turns the noise on and the last turns it off.
+ * MIT licence. */
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -63,8 +66,30 @@ static inline float gen_next(gen_t *g, int range) {
     return y;
 }
 
+/* ---- the GUIDE: step 0 gets ready, then one step per part, then done ---- */
+typedef struct { const char *name, *hint; } part_t;
+static const part_t PARTS[] = {
+    {"KICK", "Listen for the thump, not the click."},
+    {"SNARE / CLAP", "Set it by its crack."},
+    {"BASS", "Listen for the notes, not the rumble. Small speakers help here."},
+    {"HI-HATS", "They cut through fast: raise the fader slowly."},
+    {"PERCUSSION", "Shakers, rims, toms: one at a time."},
+    {"MAIN SAMPLE / CHORDS", "The loop or chords the beat is built on."},
+    {"MELODY / LEAD", "Leads, hooks, counter-melodies."},
+    {"VOCALS", "Set them by the words: raise until you can just make them out."},
+    {"PADS / TEXTURE", "Pads, vinyl, ambience: these usually end up lowest."},
+    {"FX / EXTRAS", "Risers, drops, ear candy. Then tap NEXT to finish."},
+};
+#define NPART (int)(sizeof PARTS / sizeof *PARTS)
+static const int ORDER[2][NPART] = {
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},   /* DRUMS FIRST */
+    {5, 0, 1, 2, 3, 4, 6, 7, 8, 9},   /* SAMPLE FIRST */
+};
+#define GSTEPS (NPART + 2)   /* 0 = get ready, 1..NPART = parts, NPART + 1 = done */
+
 typedef struct {
     int on, level, width, range;
+    int gstep, gorder, pending;   /* GUIDE: the step, the order; pending: noise_on changed, for the host */
     float norm[2];          /* gain that makes each range exactly 0 dBFS RMS */
     gen_t g[2];
     float gain, target, ramp_to, ramp_step;   /* output gain, ramped linearly over ~20 ms */
@@ -121,12 +146,24 @@ static void set_param(void *p, const char *k, const char *v) {
     else if (!strcmp(k, "width")) e->width = x ? 1 : 0;
     else if (!strcmp(k, "range")) { int r = x ? 1 : 0; if (r != e->range) { e->range = r; reset_gens(e); } }
     else if (!strcmp(k, "clear_peak")) { if (x) { e->peak = 0; e->rev++; } }
+    else if (!strcmp(k, "guide_next") || !strcmp(k, "guide_back")) {
+        if (!x) return;
+        int fwd = k[6] == 'n', st = e->gstep + (fwd ? 1 : -1);
+        if (st < 0) st = 0;
+        if (st >= GSTEPS) st = 0;   /* after DONE: start again */
+        if (fwd && st == 1 && !e->on) { e->on = 1; e->pending = 1; }            /* GET READY -> the first part: noise on */
+        if (fwd && st == GSTEPS - 1 && e->on) { e->on = 0; e->pending = 1; }    /* the last part -> DONE: noise off */
+        e->gstep = st; e->rev++;
+    }
+    else if (!strcmp(k, "guide_order")) { int o = x ? 1 : 0; if (o != e->gorder) { e->gorder = o; e->gstep = 0; e->rev++; } }
     else if (!strcmp(k, "state")) {   /* on=..;level=..;width=..;range=.. */
         const char *s;
         if ((s = strstr(v, "on="))) e->on = atoi(s + 3) ? 1 : 0;
         if ((s = strstr(v, "level="))) { x = atoi(s + 6); e->level = x < 0 ? 0 : x > 5 ? 5 : x; }
         if ((s = strstr(v, "width="))) e->width = atoi(s + 6) ? 1 : 0;
         if ((s = strstr(v, "range="))) { e->range = atoi(s + 6) ? 1 : 0; reset_gens(e); }
+        e->gorder = (s = strstr(v, "gorder=")) ? (atoi(s + 7) ? 1 : 0) : 0;
+        e->gstep = 0;   /* the guide starts at the beginning when a project opens */
     }
     retarget(e);
 }
@@ -142,7 +179,33 @@ static int get_param(void *p, const char *k, char *b, int n) {
     if (!strcmp(k, "meter")) return snprintf(b, n, "%d", e->meter);
     if (!strcmp(k, "clear_peak")) return snprintf(b, n, "0");
     if (!strcmp(k, "display_rev")) return snprintf(b, n, "%u", e->rev);
-    if (!strcmp(k, "state")) return snprintf(b, n, "on=%d;level=%d;width=%d;range=%d", e->on, e->level, e->width, e->range);
+    if (!strcmp(k, "state")) return snprintf(b, n, "on=%d;level=%d;width=%d;range=%d;gorder=%d", e->on, e->level, e->width, e->range, e->gorder);
+    if (!strcmp(k, "guide_next") || !strcmp(k, "guide_back")) return snprintf(b, n, "0");
+    if (!strcmp(k, "guide_order")) return snprintf(b, n, "%d", e->gorder);
+    if (!strncmp(k, "guide_", 6)) {   /* the GUIDE page's lines */
+        int st = e->gstep, part = st >= 1 && st <= NPART ? ORDER[e->gorder][st - 1] : -1;
+        if (!strcmp(k, "guide_step")) {
+            if (st == 0) return snprintf(b, n, "GET READY");
+            if (st == GSTEPS - 1) return snprintf(b, n, "DONE");
+            return snprintf(b, n, "STEP %d OF %d   ·   NOISE %s AT %d dB", st, NPART, e->on ? "ON" : "OFF", (int)LEVELS[e->level]);
+        }
+        if (!strcmp(k, "guide_title")) {
+            if (st == 0) return snprintf(b, n, "PULL EVERY FADER DOWN");
+            if (st == GSTEPS - 1) return snprintf(b, n, "THAT'S YOUR ROUGH MIX");
+            return snprintf(b, n, "SOLO THE %s", PARTS[part].name);
+        }
+        if (!strcmp(k, "guide_text1")) {
+            if (st == 0) return snprintf(b, n, "Turn every track's fader all the way down (or note where they are).");
+            if (st == GSTEPS - 1) return snprintf(b, n, "The noise is off. Unsolo everything and have a listen.");
+            return snprintf(b, n, "Raise its fader from silence until you can only just hear it over the noise.");
+        }
+        if (!strcmp(k, "guide_text2")) {
+            if (st == 0) return snprintf(b, n, "Then tap NEXT: the noise comes on and the guide starts with the first part.");
+            if (st == GSTEPS - 1) return snprintf(b, n, "Fine-tune by ear from here. Tap NEXT to start again.");
+            return snprintf(b, n, "%s  Not in the beat? Tap NEXT.", PARTS[part].hint);
+        }
+        return 0;
+    }
     if (!strcmp(k, "reading")) {
         if (!e->on && e->gain < 1e-5f) return snprintf(b, n, "NOISE OFF  -  TAP ON TO START");
         float pk = e->peak > 1e-6f ? 20.f * log10f(e->peak) : -120.f;
@@ -187,6 +250,14 @@ static void render(void *p, int16_t *out, int frames) {
         e->acc = 0; e->accn = 0; e->win_peak = 0;
         e->rev++;
     }
+}
+
+int mpc_engine_changed(void *inst, char *key, int len) {   /* the GUIDE switched the noise on or off: MPC's screen follows */
+    noise_t *e = inst;
+    if (!e->pending) return 0;
+    e->pending = 0;
+    snprintf(key, len, "noise_on");
+    return 1;
 }
 
 static const mpc_engine_t ENGINE = {create, destroy, midi, set_param, get_param, render, NULL, NULL};
