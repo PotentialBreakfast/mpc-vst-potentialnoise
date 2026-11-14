@@ -1,2 +1,2 @@
-# tools/bench.sh -j on an MPC One (Gen1), MPC OS 3.10.1, MPC running, 2026-11-13, PotentialNoise 2.1.1
-{"plugin": "PotentialNoise", "instrument": 1, "open_ms": 43.9, "p99_pct": 1.6, "max_pct": 1.9, "threads_pct": 0.0, "verdict": "PASS", "triggers": 1, "trigger_max_pct": 1.6}
+# MPC TOOLS bench (Open MPC tools/bench.c -j) on an MPC One, MPC OS 3.10.1, MPC running, 2026-11-14, PotentialNoise 2.4.0
+{"plugin": "PotentialNoise", "instrument": 1, "open_ms": 140.4, "p99_pct": 1.8, "max_pct": 3.1, "threads_pct": 0.0, "verdict": "PASS", "triggers": 3, "trigger_max_pct": 1.4}
