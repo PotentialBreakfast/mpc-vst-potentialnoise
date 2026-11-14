@@ -1,0 +1,49 @@
+= START
+# PotentialNoise: mix against the noise
+A calibrated pink noise reference for the pink-noise mixing method: set a level, solo each track, and raise it until it is only just audible over the noise. A quick, neutral way to a balanced rough mix.
+
+- Load it as a plugin instrument on its own track. It starts off, so nothing blasts when you add it.
+- The GUIDE page walks you through the whole method, one tap per track.
+- It also has test tones, octave bands and a speaker check.
+
+The full PotentialSuite manual: github.com/PotentialBreakfast/potential-plugins
+
+= METHOD
+# The pink-noise method
+- 1. Add PotentialNoise to a track and pick a LEVEL. -14 dB is a good start.
+- 2. Tap ON.
+- 3. Solo each of your tracks with the noise playing, and raise its level until you can only just hear it over the noise.
+- 4. Switch the noise off. You have a balanced starting point for your mix.
+
+Pink noise has equal energy in every octave, which is close to how we hear, so nothing ends up too loud or too quiet for its frequency range.
+
+GUIDE page: NEXT switches the noise on and names each part of your beat in turn (kick, snare, bass, hats, percussion, main sample, melody, vocals, pads, FX), with what to listen for. Parts you do not have are one tap to skip. The last tap switches the noise off. DRUMS FIRST or SAMPLE FIRST sets the order.
+
+= CONTROLS
+# Controls
+- NOISE ON / OFF: fades over about 20 ms, so there are no clicks.
+- LEVEL: -24, -20, -18, -16, -14 or -12 dB RMS. The level is measured: -14 dB means -14 dBFS RMS.
+- SIGNAL: PINK NOISE, TEST TONE, OCTAVE BAND or SPEAKER CHECK.
+- TEST TONE: a steady sine at 1 kHz, 100 Hz, 60 Hz or 40 Hz. 1 kHz at -18 dB is a common reference for gain staging.
+- OCTAVE BAND: pink noise in one octave, 31 Hz to 16 kHz, to balance the tracks that live in that range.
+- SPEAKER CHECK: left, right, both in phase, both out of phase, 2 seconds each. If the out-of-phase part sounds centred, one speaker is wired backwards.
+- CHANNELS: MONO or STEREO. RANGE: FULL (20 Hz and up) or LIMITED (40 Hz to 16 kHz).
+- RMS and PEAK show what it is sending. CLEAR PEAK resets the peak.
+
+= SUITE
+# With the other plugins
+- Balance first, colour second: use the method on the dry tracks, then add your effect chains.
+- After adding a chain, match its level with the plugin's OUTPUT so the balance you found still holds.
+- A 1 kHz TEST TONE at -18 dB is a quick way to check the level through a chain of effects.
+- Take PotentialNoise off the project, or leave it OFF, when you are done. Its setting is saved with the project.
+
+= HELP
+# Good to know
+- Q-Links: ON, LEVEL, SIGNAL, TONE, BAND, CHANNELS, RANGE and CLEAR PEAK.
+- Every setting is saved with your project.
+- Looks: Print Plate, Night Rack or Colour Block, on the SETTINGS page. A new look shows the next time the plugin loads.
+- It is a starting point, not a finished mix. Use your ears from there.
+- At -12 dB RMS the loudest noise peaks come close to 0 dBFS. -14 dB or lower leaves headroom.
+- The meter shows the plugin's own output, not your mix.
+
+Ideas, bugs and criticism are all welcome: github.com/PotentialBreakfast/mpc-vst-potentialnoise

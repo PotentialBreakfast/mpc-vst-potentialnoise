@@ -207,6 +207,7 @@
     "16 kHz"
    ],
    "default": "31 Hz"
-  }
- ]
+  },
+  {"key": "manual_page", "name": "Manual Page", "options": ["START", "METHOD", "CONTROLS", "SUITE", "HELP"], "default": 0}
+]
 }

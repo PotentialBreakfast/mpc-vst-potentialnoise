@@ -20,6 +20,7 @@
 #include <string.h>
 #include "engine.h"
 #include "../shared/looks/potential_theme.h"   /* the LOOK switch (parameter "theme") */
+#include "../shared/potential_manual.h"        /* the MANUAL tab's page */
 
 #define SR 44100.0
 static const float LEVELS[6] = {-24, -20, -18, -16, -14, -12};
@@ -119,6 +120,7 @@ typedef struct {
     int meter, has_rms;
     unsigned rev;
     pt_theme_t theme;   /* which look MPC loads next time: not part of the saved state */
+    pm_manual_t manual; /* the MANUAL tab's page: not part of the sound or the saved state */
 } noise_t;
 
 /* Soft knee above -2 dBFS: the rare noise peaks round off below 0 dBFS instead of clipping (RMS changes < 0.01 dB). */
@@ -182,6 +184,7 @@ static void midi(void *p, const uint8_t *m, int n) { (void)p; (void)m; (void)n; 
 static void set_param(void *p, const char *k, const char *v) {
     noise_t *e = p; int x = atoi(v);
     if (pt_theme_set(&e->theme, k, v)) return;
+    if (pm_set(&e->manual, k, v)) return;
     /* "on" (parameter 0) is an unused slot since 2.0.2: MPC's host flicks parameter 0 on STOP and on Overdub while playing,
      * which briefly switched the noise on. ON/OFF is "noise_on" now; saved projects still restore it from the state. */
     if (!strcmp(k, "on")) return;
@@ -223,6 +226,7 @@ static void set_param(void *p, const char *k, const char *v) {
 static int get_param(void *p, const char *k, char *b, int n) {
     noise_t *e = p;
     { int pt_n = pt_theme_get(&e->theme, k, b, n); if (pt_n) return pt_n; }
+    { int pm_n = pm_get(&e->manual, k, b, n); if (pm_n) return pm_n; }
     if (!strcmp(k, "on")) return snprintf(b, n, "0");
     if (!strcmp(k, "noise_on")) return snprintf(b, n, "%d", e->on);
     if (!strcmp(k, "level")) return snprintf(b, n, "%d", e->level);

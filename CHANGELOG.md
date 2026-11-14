@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.0 (2026-11)
+- **MANUAL page.** The plugin's manual is now on the MPC's screen: tap **MANUAL**, then the page buttons along the top (what it does, the controls, how it works with the other PotentialSuite plugins, and good-to-know notes). The full PotentialSuite manual is on the [PotentialSuite page](https://github.com/PotentialBreakfast/potential-plugins).
+- One parameter was added at the end of the list (Manual Page); saved projects open as before. Sound and controls are unchanged.
+
 ## 2.3.0 (2026-11)
 - **SIGNAL**: four things to play, one tap each. **PINK NOISE** (as before), **TEST TONE** (a steady sine at 1 kHz, 100, 60 or 40 Hz, at the LEVEL you pick: 1 kHz for gain staging, the low ones to hear how far down your speakers go), **OCTAVE BAND** (pink noise in one octave only, 31 Hz to 16 kHz, to balance the tracks in that range) and **SPEAKER CHECK** (left, right, both in phase, both out of phase, 2 seconds each, with the tip line saying which: a quick check that your speakers are the right way round and wired in phase).
 - Switching signal, tone, band, channels or range while it plays fades out and back in, so there are no clicks.
