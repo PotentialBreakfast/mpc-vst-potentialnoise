@@ -4,7 +4,7 @@
 
 ![PotentialNoise's page on the MPC](docs/images/potentialnoise.png)
 
-*Instrument plugin · MPC OS 3.x · Gen1 and Gen2 · v2.4.0*
+*Instrument plugin · MPC OS 3.x · Gen1 and Gen2 · v2.5.0*
 
 Free and open source (MIT), made by **PotentialBreaks**. It runs inside the MPC like its own instruments, with its own touchscreen page, Q-Link control and project recall, and no computer needed while you play.
 
@@ -38,9 +38,9 @@ The **GUIDE** page walks you through this one tap at a time. By hand:
 
 Pink noise has equal energy in every octave, which is close to how we hear, so nothing ends up too loud or too quiet for its frequency range.
 
-## Three looks
+## Four looks
 
-PotentialNoise comes in three looks: **Print Plate** (the default), **Night Rack** and **Colour Block**. Open the **SETTINGS** page and tap one of the big LOOK keys. The new look shows the next time the plugin loads: take it off the track and add it again, or load your project again. Your choice is kept on your MPC for every project. The sound and the controls are the same in all three.
+PotentialNoise comes in four looks: **Print Plate** (the default), **Night Rack**, **Colour Block** and **Vintage** (a late-80s drum machine: warm grey panel, cream keys, an amber display). Open the **SETTINGS** page and tap one of the big LOOK keys. The new look shows the next time the plugin loads: take it off the track and add it again, or load your project again. Your choice is kept on your MPC for every project. The sound and the controls are the same in all four.
 
 ## Limitations
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.0 (2026-11-15)
+
+- A fourth look, **Vintage** (Potential1200's late-80s drum-machine look), on the LOOK keys.
+
 ## 2.4.0 (2026-11)
 - **MANUAL page.** The plugin's manual is now on the MPC's screen: tap **MANUAL**, then the page buttons along the top (what it does, the controls, how it works with the other PotentialSuite plugins, and good-to-know notes). The full PotentialSuite manual is on the [PotentialSuite page](https://github.com/PotentialBreakfast/potential-plugins).
 - One parameter was added at the end of the list (Manual Page); saved projects open as before. Sound and controls are unchanged.
