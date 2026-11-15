@@ -1,5 +1,9 @@
 # Changelog
 
+
+## 2.5.1 (2026-11-15)
+
+- Loads about 100 times faster: the signal levels are built in instead of measured on every load (about 140 ms on an MPC One). Same levels; `tests/test_calibration.c` checks them.
 ## 2.5.0 (2026-11-15)
 
 - A fourth look, **Vintage** (Potential1200's late-80s drum-machine look), on the LOOK keys.

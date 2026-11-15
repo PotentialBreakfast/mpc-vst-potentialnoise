@@ -134,6 +134,13 @@ static inline float soft(float x) {
 static void band_init(bq_t *b, int band) {   /* one octave, two band-passes (4th order), Q for an octave */
     bq_bp(&b[0], BAND_HZ[band], 1.414); bq_bp(&b[1], BAND_HZ[band], 1.414);
 }
+/* The level of each signal, measured once from its fixed-seed generator (2.5.1). Measuring it in create() (6 s of noise
+ * for each of 12 signals) made the plugin take about 140 ms to load on an MPC One; these are the same numbers, built in.
+ * tests/test_calibration.c measures them again and checks they still match (within 0.01 dB). */
+static const float NORM[2] = {0.658015072f, 0.708316982f};
+static const float BNORM[NBAND] = {2.36724257f, 2.38311028f, 2.4803617f, 2.29637337f, 2.41932178f, 2.33383179f,
+                                    2.40063882f, 2.42805815f, 2.65817261f, 4.08830357f};
+#ifdef NOISE_CALIBRATE
 static float calibrate_band(int band) {
     gen_t g; gen_init(&g, 777, 0);
     bq_t b[2]; band_init(b, band);
@@ -149,6 +156,8 @@ static float calibrate(int range) {
     for (int i = 0; i < n + warm; i++) { float y = gen_next(&g, range); if (i >= warm) s += (double)y * y; }
     return (float)(1.0 / sqrt(s / n));
 }
+#endif
+
 static void reset_gens(noise_t *e) {
     gen_init(&e->g[0], 0x9E3779B9u, e->range);
     gen_init(&e->g[1], 0x85EBCA6Bu, e->range);
@@ -171,8 +180,8 @@ static void *create(const char *dir) {
     noise_t *e = calloc(1, sizeof *e);
     if (!e) return NULL;
     pt_theme_init(&e->theme, dir);
-    e->level = 4; e->norm[0] = calibrate(0); e->norm[1] = calibrate(1);
-    for (int b = 0; b < NBAND; b++) e->bnorm[b] = calibrate_band(b);
+    e->level = 4; e->norm[0] = NORM[0]; e->norm[1] = NORM[1];
+    for (int b = 0; b < NBAND; b++) e->bnorm[b] = BNORM[b];
     band_init(e->bp[0], 0); band_init(e->bp[1], 0);
     e->rms_db = -120; e->peak = 0;
     reset_gens(e); retarget(e);
