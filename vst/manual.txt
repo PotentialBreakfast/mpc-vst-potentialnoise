@@ -41,7 +41,7 @@ GUIDE page: NEXT switches the noise on and names each part of your beat in turn 
 # Good to know
 - Q-Links: ON, LEVEL, SIGNAL, TONE, BAND, CHANNELS, RANGE and CLEAR PEAK.
 - Every setting is saved with your project.
-- Looks: Print Plate, Night Rack, Colour Block or Vintage, on the SETTINGS page. A new look shows the next time the plugin loads.
+- Looks: Print Plate, Night Rack, Colour Block, Vintage or Hi-Fi, on the SETTINGS page. A new look shows the next time the plugin loads.
 - It is a starting point, not a finished mix. Use your ears from there.
 - At -12 dB RMS the loudest noise peaks come close to 0 dBFS. -14 dB or lower leaves headroom.
 - The meter shows the plugin's own output, not your mix.

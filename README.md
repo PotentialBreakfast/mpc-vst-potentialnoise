@@ -38,9 +38,9 @@ The **GUIDE** page walks you through this one tap at a time. By hand:
 
 Pink noise has equal energy in every octave, which is close to how we hear, so nothing ends up too loud or too quiet for its frequency range.
 
-## Four looks
+## Five looks
 
-PotentialNoise comes in four looks: **Print Plate** (the default), **Night Rack**, **Colour Block** and **Vintage** (a late-80s drum machine: warm grey panel, cream keys, an amber display). Open the **SETTINGS** page and tap one of the big LOOK keys. The new look shows the next time the plugin loads: take it off the track and add it again, or load your project again. Your choice is kept on your MPC for every project. The sound and the controls are the same in all four.
+PotentialNoise comes in five looks: **Print Plate** (the default), **Night Rack**, **Colour Block**, **Vintage** (a late-80s drum machine: warm grey panel, cream keys, an amber display) and **Hi-Fi** (PotentialBox's look: walnut cheeks, a brushed charcoal faceplate, domed knobs lit in the plugin's colour, moulded cream keys, green glass displays). Open the **SETTINGS** page and tap one of the big LOOK keys. The new look shows the next time the plugin loads: take it off the track and add it again, or load your project again. Your choice is kept on your MPC for every project. The sound and the controls are the same in all four.
 
 ## Limitations
 
