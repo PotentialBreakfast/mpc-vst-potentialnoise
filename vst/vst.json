@@ -2,7 +2,7 @@
  "name": "PotentialNoise",
  "vendor": "PotentialBreaks",
  "uid": "PbNz",
- "version": 2501,
+ "version": 2600,
  "so": "potentialnoise.so",
  "params": "params.json",
  "layout": "layout.conf",

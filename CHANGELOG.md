@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.6.0 (2026-11)
+- New **Hi-Fi** look (the fifth on the LOOK selector, from PotentialBox): walnut cheeks, a brushed charcoal faceplate, raised panels, domed knobs lit in the plugin's colour, moulded cream keys and green glass displays.
+- The LOOK selector now has five looks: Print Plate, Night Rack, Colour Block, Vintage and Hi-Fi.
+
 
 ## 2.5.1 (2026-11-15)
 
